@@ -4,18 +4,11 @@ local opt = {noremap=true,silent=true}
 -- Telescope
 map("n", "\\f",      "<cmd>Telescope find_files<CR>", opt)
 map("n", "\\g",      "<cmd>Telescope live_grep<CR>",  opt)
-map("n", "\\c",      "<cmd>Telescope grep_files<CR>", opt)
-map("n", "\\m",      "<cmd>Telescope marks<CR>",      opt)
-map("n", "\\b",      "<cmd>Telescope buffers<CR>",    opt)
-map("n", "\\s",      "<cmd>Telescope find_files<CR>", opt)
-map("n", "\\g",      "<cmd>Telescope live_grep<CR>",  opt)
-map("n", "\\c",      "<cmd>Telescope grep_files<CR>", opt)
 map("n", "\\m",      "<cmd>Telescope marks<CR>",      opt)
 map("n", "\\<Space>","<cmd>Telescope buffers<CR>",    opt)
 
 -- Manage tabs
-map("n", "td",       "<cmd>tabnew %<CR>", opt)
-map("n", "tn",       "<cmd>tabnew<CR>",   opt)
+map("n", "tn",       "<cmd>tabnew %<CR>",   opt)
 map("n", "tq",       "<cmd>tabclose<CR>", opt)
 map("n", "t<Left>",  "<cmd>tabprev<CR>",  opt)
 map("n", "t<Right>", "<cmd>tabnext<CR>",  opt)
@@ -25,6 +18,9 @@ map("n", "<S-Left>", "<Home>", opt)
 map("i", "<S-Left>", "<Home>", opt)
 map("n", "<S-Right>", "<End>", opt)
 map("i", "<S-Right>", "<End>", opt)
+
+map("n", "\\v",       "<cmd>:vs<CR>", opt)
+map("n", "\\h",       "<cmd>:sp<CR>", opt)
 
 -- Smart manual identation
 map("v", ">",       ">gv", opt)

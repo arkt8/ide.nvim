@@ -26,10 +26,10 @@ O.colorcolumn    = "0"
 O.cursorline     = false
 O.foldenable     = false
 O.relativenumber = false
-O.numberwidth    = 2  
+O.numberwidth    = 2
 O.number         = true
 O.ruler          = true
-O.list = true 
+O.list           = true
 O.listchars:append{
   tab      = "│ ", -- Used by Tab on expandtab=false
   trail    = "*",  -- Spaces at the end of line
@@ -54,7 +54,7 @@ O.background     = "dark"
 end
 
 vim.api.nvim_set_var("gruvbox_contrast_dark","hard") -- "medium", "soft"
-vim.cmd[[colorscheme gruvbox]]
 
--- Tweak any colorscheme to sound defaults
-require("colors").update()
+-- Load colorscheme with fail safe ones
+-- and tweak to beter user interface experience
+require("colors").use("wal","dracula","gruvbox","desert")

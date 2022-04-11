@@ -1,32 +1,28 @@
-# NeoVim + LSP ready for Nim
+# NeoVim + LSP ready IDE setup
 
-This repository is intended as a minimal usable configuration with
-these resources enabled:
+Started as a minimal usable conf... but become my fully standard one!
 
-* NeoVim LSP, autocomplete and snippets
-* Nim language + LSP
-* Fuzzy finder to speedup large project findings
-* Some visual eyecandies
-* 100% Lua configuration (including ftplugin)
-* UX on colors
+## Features
 
-Use it to understand how to configure LSP or structure Lua files or
-even explore Neovim as your Nim IDE.
+* Fully Lua configurated (even ftplugins)
+* UI tunned defaults like menus, splits etc to work comfortably with all
+  colorschemes install, no disruptive experience
+* Consistent semaphoric colors for errors, diff's and git status on LuaLine
+* Less system resources on LSP: Uses NeoVim's own LSP system, no need on Coc/Node
+* Out of the box enabled Nim (nimlsp) and Lua (sumneko_lua) language-servers
+* Out of the box enabled autocomplete and snippets
+* Wal colorscheme support as default
 
 
-## UX on colors
+## Development
 
-Framework over colorschemes handpicked to avoid eyestrain:
+The purpose is to have the basic productivity things easily.
+So a basic set fo colorschemes and plugins are predefined to be used
+along Packer plugin manager. See `lua/plugins.lua`.
 
-- Semaphoric colors for warnings/errors/hints that prevails over all
-  colorschemes to a consistent behavior.
-
-- Italicized reserved words for languages independent on colorscheme
-  used
-
-- Soften UI element backgrounds to shades between background and
-  foreground colors, this way you will not be sad using a nice
-  colorscheme that hurts by the color of every popup suggestion
+Also no much tweaking things once is set, so not wait it to become
+a bloated configuration setup... may be new tweaks are in direction
+to add more predefinitions of LSP file types or syntax.
 
 
 ## Quickstart
@@ -53,6 +49,12 @@ Framework over colorschemes handpicked to avoid eyestrain:
   you can add plugins editing `lua/plugins.lua` file, reloading it with
   `:luafile %`, then `:PackerCompile` and finally `:PackerUpdate`.
 
+* If you will go coding in one of these languages you are encouraged
+  to have the binary of its language server in your system's path:
+
+    - For Lua, sumneko's `lua-language-server`
+    - For Nim, `nimlsp` that can be installed via `nimble`
+
 
 ## Steps to work with Nim
 
@@ -69,6 +71,24 @@ best editor and the best multiparadigm language.
 
 See `:help lspconfig-server-configurations.md` to know more about
 configuring other language servers.
+
+
+## Keymaps
+
+### Searching code
+* `\f` Find files _(with Telescope)_
+* `\g` Live Grep  _(with Telescope)_
+* `\m` List Marks _(with Telescope)_
+* `\Space` List opened buffers _(with Telescope)_
+
+### Splits
+* `\h` Horizontal split
+* `\v` Vertical split
+
+### Tab management
+* `tn` New tab with current opened file
+* `tq` Close tab
+
 
 
 > The best revenge
