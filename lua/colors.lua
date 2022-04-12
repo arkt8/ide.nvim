@@ -58,47 +58,45 @@ local function italicizeReservedKeywords()
    end
 end
 
-local function setHintColor(color)
-   colors.hi( "Hint","None",color,"italic")
-   colors.hiLink("Hint", {
-      "CocHintHighlight",
-      "CocHintSign",
-      "DiagnosticFloatingHint",
-      "DiagnosticSignHint",
-      "DiagnosticVirtualTextHint"
-   })
-end
+local function setErrorColor(dark,light)
+   colors.hi( "Error","None",dark,"italic")
+   colors.hiLink("Error", { "ALEError", "CocErrorHighlight", "DiagnosticVirtualTextError", "ErrorMsg" })
 
-local function setWarnColor(color)
-   colors.hi( "Warn","None",color,"italic")
-   colors.hiLink("Warn", {
-      "DiagnosticFloatingWarn",
-      "DiagnosticSignWarn",
-      "DiagnosticWarn",
-      "DiagnosticVirtualTextWarn",
-   })
-end
-
-local function setErrorColor(color)
-   colors.hi( "Error","None",color,"italic")
-   colors.hi( "SignError",color,color,"italic")
-   colors.hiLink("Error", {
-      "ALEError",
-      "CocErrorHighlight",
-      "DiagnosticFloatingError","DiagnosticVirtualTextError",
-      "ErrorMsg"
-   })
+   colors.hi( "SignError",dark,light,"bold")
    colors.hiLink("SignError", {"ALEErrorSign","CocErrorSign","DiagnosticSignError",})
+
+   colors.hi( "DiagnosticFloatingError","None",light,"None")
 end
 
-local function setInfoColor(color)
-   colors.hi( "Info","None",color,"italic")
-   colors.hiLink("Info", {
-      "ALEInfo","ALEInfoSign",
-      "DiagnosticFloatingInfo",
-      "DiagnosticSignInfo",
-      "DiagnosticVirtualTextInfo"
-   })
+local function setWarnColor(dark,light)
+   colors.hi( "Warn","None",dark,"italic")
+   colors.hiLink("Warn", { "DiagnosticWarn", "DiagnosticVirtualTextWarn" } )
+
+   colors.hi( "SignWarn",dark,light,"bold")
+   colors.hiLink("SignWarn", {"ALEWarnSign", "CocWarnSign", "DiagnosticSignWarn",})
+
+   colors.hi( "DiagnosticFloatingWarn","None",light,"None")
+end
+
+local function setHintColor(dark,light)
+   colors.hi( "Hint", "None", dark, "italic")
+   colors.hiLink("Hint", {"ALEHint", "CocHintHighlight", "DiagnosticVirtualTextHint" })
+
+   colors.hi( "SignHint",dark,light,"bold")
+   colors.hiLink("SignHint", {"ALEHintSign", "CocHintSign", "DiagnosticSignHint",})
+
+   colors.hi( "DiagnosticFloatingHint","None",light,"None")
+
+end
+
+local function setInfoColor(dark,light)
+   colors.hi( "Info","None",dark,"italic")
+   colors.hiLink("Info", { "ALEInfo", "CocInfoHighlight", "DiagnosticVirtualTextInfo" })
+
+   colors.hi( "SignInfo",dark,dark,"italic")
+   colors.hiLink("SignInfo", {"ALEInfoSign","CocInfoSign","DiagnosticSignInfo",})
+
+   colors.hi( "DiagnosticFloatingInfo", "None", light, "None")
 end
 
 local function setDiffColor()
@@ -208,10 +206,10 @@ function colors.update()
    -- Warn always yellowish and Error always reddish independent of scheme
    local semaphore = { "#ff0033", "#ff6600", "#888888", "#00ff66" }
 
-   setErrorColor( mix(comment, semaphore[1], 0.5) )
-   setWarnColor(  mix(comment, semaphore[2], 0.5) )
-   setHintColor(  mix(comment, semaphore[3], 0.5) )
-   setInfoColor(  mix(comment, semaphore[4], 0.5) )
+   setErrorColor( mix(comment, semaphore[1], 0.5), mix(semaphore[1],ui.fg,0.5) )
+   setWarnColor(  mix(comment, semaphore[2], 0.5), mix(semaphore[2],ui.fg,0.5) )
+   setHintColor(  mix(comment, semaphore[3], 0.5), mix(semaphore[3],ui.fg,0.5) )
+   setInfoColor(  mix(comment, semaphore[4], 0.5), mix(semaphore[4],ui.fg,0.5) )
    setLualineModifications(semaphore)
    setDiffColor()
 
@@ -221,12 +219,14 @@ function colors.update()
    hi("PmenuSel",   mix( ui.bg, ui.fg, 0.4),  ui.fg,  "bold")
    hi("PmenuSbar",  mix( ui.bg, ui.fg, 0.15), ui.fg,  "bold")
    hi("PmenuThumb", mix( ui.bg, ui.fg, 0.5),  ui.fg,  "bold")
+   hi("NormalFloat",mix( ui.bg, ui.fg, 0.1),  "None", "None")
    hi("ColorColumn",mix( ui.bg, ui.fg, 0.05), "None", "None")
    hi("FoldColumn", "None", ui.fg,  "None")
    hi("VertSplit",  "None", mix( ui.bg, ui.fg, 0.5),  "bold")
    hi("NonText",    "None", ui.bg,  "None")
 
-   -- Avoid braindrained errors on low contrast colorschemes
+   -- Avoid brain draining visuals on errors shown when using
+   -- low-contrast or low-saturation colorschemes
    italicizeReservedKeywords()
 end
 vim.api.nvim_create_autocmd({"VimEnter","ColorScheme"},{
