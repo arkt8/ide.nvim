@@ -1,0 +1,10 @@
+#!/bin/env sh
+# We kill existent nimlsp's because if NeoVim is running
+# they will be restarted. If not it automatically save resources
+pkill -9 nimlsp
+
+while : ; do
+    [[ ! -d "/proc/${PPID}" ]] && exit
+    timeout 10m nimlsp ;
+    sleep 5
+done

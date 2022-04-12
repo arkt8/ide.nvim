@@ -44,7 +44,14 @@ capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 -- luasnip setup
 local luasnip = require 'luasnip'
 
-function lala () print( "oi") end
+-- Diagnostic popup configuration
+vim.o.updatetime=250
+vim.cmd[[autocmd CursorHold * lua vim.diagnostic.open_float(nim, {focus=false})]]
+vim.diagnostic.config({
+   virtual_text=true,
+   float = { source = "always" } -- Or "if_many"
+})
+
 -- nvim-cmp setup
 local cmp = require 'cmp'
 cmp.setup {
