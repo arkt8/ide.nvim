@@ -14,6 +14,8 @@ It is better add a call to the setup function of this module on specific
 --]]
 local M = {}
 
+vim.api.nvim_set_keymap("n", "\\r",  "<cmd>LspStop<CR><cmd>LspStart<CR>", {noremap=true,silent=true})
+
 local on_attach = function(client, bufnr)
    local opts = {noremap=true,silent=true}
    -- Enable completion triggered by <c-x><c-o>
