@@ -89,6 +89,34 @@ configuring other language servers.
 * `tn` New tab with current opened file
 * `tq` Close tab
 
+### AutoCompletion
+
+Default keymap blocks the natural navigation through the file,
+putting the navigation on menus with highest priority. If you have a
+suggestion opens during your writting, some keys have completely
+different behaviors (like Tab, Enter and Arrows) and the completion that
+should help you write words that you have to spend time removing.
+
+Thinking on these I set some keymaps to work only with suggestion.
+If you want to change it, they are on `lua/lsp-config.lua` file.
+
+Autocomplete Menu Navigation
+* `Shift ↓` or `Ctrl j` Select next menu item
+* `Shift ↑` or `Ctrl k` Select previous menu item
+
+Autocomplete selection
+* `Shift →` or `Insert` Complete with suggested text
+* `Enter` Complete only if you select something from menu,
+   otherwise act in the standard behavior
+
+Close autocomplete menu
+* `Shift ←` or `Ctrl E` Close suggestion menu
+
+Navigation on menu item documentation
+* `Shift PageUp` or `Ctrl ↑` Show upper text
+* `Shift PageDown` or `Ctrl ↓` Show lower text
+
+
 ### LSP
 
 * `\r` Reload lsp issuing :LspStop followed by :LspStart.
