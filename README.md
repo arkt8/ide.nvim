@@ -89,7 +89,14 @@ configuring other language servers.
 * `tn` New tab with current opened file
 * `tq` Close tab
 
+### LSP
 
+* `\r` Reload lsp issuing :LspStop followed by :LspStart.
+Some language servers have its peculiarities, and using it may
+break the session needing to restart Vim. Try it only if the the LS dies.
+
+
+----
 
 > The best revenge
 > is not to be like your enemy.
