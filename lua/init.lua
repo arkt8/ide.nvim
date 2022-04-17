@@ -19,7 +19,13 @@ vim.api.nvim_create_autocmd({"FileType"}, {
    pattern = {"*"},
    callback = function() loadftmodule(vim.bo.filetype,"ftplugin") end
 })
-vim.api.nvim_create_autocmd({"VimEnter","BufWinEnter"}, {
+
+vim.api.nvim_create_autocmd({"FileType"}, {
+   pattern = {"*"},
+   callback = function() loadftmodule(vim.bo.filetype,"newfile") end
+})
+
+vim.api.nvim_create_autocmd({"VimEnter","BufWinEnter","Colorscheme"}, {
    pattern = {"*"},
    callback = function() loadftmodule(vim.bo.filetype,"syntax") end
 })

@@ -98,6 +98,11 @@ cmp.setup {
 -- Avoid restart on filetype
 local singleSet = {}
 function M.setup(server, config)
+
+   -- Lsp's not work well with temporary files as
+   -- the generated to compare in diff
+   if vim.o.diff == true then return end
+
    vim.opt_local.signcolumn="yes"
    if singleSet[server] == true then return end
    local lsp = require("lspconfig")

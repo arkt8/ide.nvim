@@ -21,7 +21,7 @@ function ft.ftplugin()
     require("lsp-config").setup("nimls", {
        -- We use a wrapper, so it not keeps hanging :)
        cmd = { script_path().."/nimlswrapper" }
-   -- Defaults...
+       -- Defaults...
        -- cmd = { "nimlsp" },
        -- filetypes = { "nim" },
        -- single_file_support = true,
@@ -30,11 +30,21 @@ function ft.ftplugin()
 end
 
 function ft.syntax()
+    vim.cmd[[set syntax=nim]]
     vim.cmd[[syntax match nimDelimiter "[\[\]\(\)\{\},]"]]
     vim.cmd[[hi! link nimDelimiter Delimiter]]
 
     vim.cmd[[syntax match nimOperator "[=+*/<>@$~&%|!?^.:\\-]" ]]
     vim.cmd[[hi! link nimOperator Operator]]
+
+    vim.cmd[[hi! link nimStatement Statement]]
+    vim.cmd[[hi! link nimFunction Function]]
+end
+
+-- nimlsp doesn't works without a filesystem file. So when opening
+-- an existent file we need to write it or nimlsp with stop working
+function ft.newfile()
+   vim.cmd[[:w]]
 end
 
 return ft
