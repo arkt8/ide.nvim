@@ -107,7 +107,7 @@ hi("WildMenu",    "None", wal.color7, "None" )
 -- Note that they are grouped by family, being the first of each
 -- the default in case other are disabled.
 
-hi("Constant",    "None",  wal.color14, "None" )
+hi("Constant",    "None",  wal.color10, "None" )
 hi("String",      "None",  wal.color10, "None" )
 hi("Character",   "None",  wal.color10, "None" )
 hi("Number",      "None",  wal.color10, "None" )
