@@ -1,14 +1,29 @@
 local ft = {}
 
+local function script_path()
+   local str = debug.getinfo(2, "S").source:sub(2)
+   return str:match("(.*/)")
+end
+
+-- As separated function in an attempt of also call it
+-- with \r when nimsuggest hangs
+local function nim_lsprestart()
+   require("lsp-config").setup("nimls", {
+      -- We use a wrapper, so it not keeps hanging :)
+      cmd = { script_path().."/nimlswrapper" }
+      -- Defaults...
+      -- cmd = { "nimlsp" },
+      -- filetypes = { "nim" },
+      -- single_file_support = true,
+   })
+end
+
 function ft.ftplugin()
     local opt = vim.opt_local
     local map = vim.api.nvim_buf_set_keymap
     local bindopt = {noremap=true,silent=true}
     local filename = vim.api.nvim_buf_get_name(0)
-    local function script_path()
-        local str = debug.getinfo(2, "S").source:sub(2)
-        return str:match("(.*/)")
-    end
+
     opt.expandtab = true
     opt.shiftwidth = 2
     opt.softtabstop = 2
@@ -16,20 +31,13 @@ function ft.ftplugin()
     opt.autoindent = true
     opt.smartindent = true
 
-
+    _G.nim_lsprestart = nim_lsprestart
     map(0, "n", "\\x", "<cmd>!nim r --spellSuggest --showAllMismatches %<Enter>", bindopt)
     map(0, "n", "\\c", "<cmd>!nim compile --spellSuggest --showAllMismatches %<Enter>", bindopt)
-
+    map(0, "n", "\\r", "<cmd>lua _G.nim_lsprestart()<Enter>", bindopt)
     -- Nimble files get broken
     if filename:match(".nims?$") then
-       require("lsp-config").setup("nimls", {
-          -- We use a wrapper, so it not keeps hanging :)
-          cmd = { script_path().."/nimlswrapper" }
-          -- Defaults...
-          -- cmd = { "nimlsp" },
-          -- filetypes = { "nim" },
-          -- single_file_support = true,
-       })
+       nim_lsprestart()
     end
 
 end
