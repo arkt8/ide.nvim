@@ -46,7 +46,7 @@ O.tabstop        = 4     -- columns used on tab (default=8)
 O.timeoutlen     = 3000
 O.wildmenu       = true
 O.wrap           = false
-O.clipboard      = "unnamedplus"
+O.clipboard      = "unnamed"
 O.termguicolors  = true
 
 O.background     = "dark"
