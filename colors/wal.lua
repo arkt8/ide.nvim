@@ -115,33 +115,33 @@ hi("Float",       "None",  wal.color10, "None" )
 hi("Boolean",     "None",  wal.color10, "bold" )
 
 hi("Functions",   "None", wal.color9, "Italic" ) -- Language native
-hi("Function",    "None", wal.color9, "Italic" ) -- Declaration
+hi("Function",    "None", wal.color15, "None" ) -- Declaration
 hi("Identifier",  "None", wal.color15, "None" )
 hi("FunctionCall","None", wal.color15, "None" ) -- On call only
 
 hi("Delimiter",   "None", wal.color3, "None" )
 
-hi("Repeat",         "None", wal.color5, "italic" )
-hi("RepeatOperator", "None", wal.color5, "italic")
+hi("Repeat",         "None", wal.color1, "italic" )
+hi("RepeatOperator", "None", wal.color1, "italic")
 hi("Statement",      "None", wal.color1, "italic" )
 
-hi("Conditional", "None", wal.color3, "Italic" )
-hi("Operator",    "None", wal.color3, "Bold,Italic" )
+hi("Conditional", "None", wal.color1, "Italic" )
+hi("Operator",    "None", wal.color1, "Bold,Italic" )
 
-hi("Label",       "None", wal.color14, "None" )
-hi("Keyword",     "None", wal.color14, "italic" )
+hi("Label",       "None", wal.color9, "None" )
+hi("Keyword",     "None", wal.color9, "italic,bold" )
 hi("Exception",   "None", wal.color7 )
 
-hi("PreProc",     "None", wal.color13, "italic" )
-hi("Include",     "None", wal.color13, "italic" )
-hi("Define",      "None", wal.color13, "italic" )
-hi("Macro",       "None", wal.color13, "italic" )
-hi("PreCondit",   "None", wal.color13, "italic" )
+hi("PreProc",     "None", wal.color9, "italic" )
+hi("Include",     "None", wal.color9, "italic" )
+hi("Define",      "None", wal.color9, "italic" )
+hi("Macro",       "None", wal.color9, "italic" )
+hi("PreCondit",   "None", wal.color9, "italic" )
 
-hi("Type",        "None", wal.color3, "bold" )
-hi("StorageClass","None", wal.color3, "None" )
-hi("Structure",   "None", wal.color3, "italic" )
-hi("Typedef",     "None", wal.color3, "bold" )
+hi("Type",        "None", wal.color13, "bold" )
+hi("StorageClass","None", wal.color13, "None" )
+hi("Structure",   "None", wal.color13, "italic" )
+hi("Typedef",     "None", wal.color13, "bold" )
 
 hi("Special",        "None", wal.color9, "italic" )
 hi("SpecialChar",    "None", wal.color7 )

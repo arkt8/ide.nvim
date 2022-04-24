@@ -229,7 +229,7 @@ function colors.update()
    -- low-contrast or low-saturation colorschemes
    italicizeReservedKeywords()
 end
-vim.api.nvim_create_autocmd({"VimEnter","ColorScheme"},{
+vim.api.nvim_create_autocmd({"VimEnter","ColorScheme","FileType","BufReadPost" },{
    pattern = {"*"},
    callback = colors.update
 })
