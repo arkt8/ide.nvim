@@ -29,3 +29,10 @@ map("v", "<Tab>",   ">gv", opt)
 map("v", "<S-Tab>", "<gv", opt)
 map("n", "<Tab>",   ">>",  opt)
 map("n", "<S-Tab>", "<<",  opt)
+
+-- The system clipboard
+map("v", "<C-y>",   '"+yy', opt)
+map("n", "<C-y>",   '<cmd>"+yy', opt)
+
+map("n", "<C-p>",   '"+p', opt)
+map("i", "<C-p>",   '<cmd>"+p', opt)

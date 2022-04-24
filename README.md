@@ -75,6 +75,10 @@ configuring other language servers.
 
 ## Keymaps
 
+### Clipboard
+* `Ctrl+y` Copy to system clipboard
+* `Ctrl+p` Paste from system clipboard
+
 ### Searching code
 * `\f` Find files _(with Telescope)_
 * `\g` Live Grep  _(with Telescope)_
