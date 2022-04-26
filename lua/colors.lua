@@ -153,6 +153,21 @@ local function setLualineModifications()
             warn = "LuaLineSemaphore2",
             info = "LuaLineSemaphore4",
             hint = "LuaLineSemaphore3"
+         },
+         -- Freedom for hard users
+         section_separators = {},
+         component_separators = {},
+         icons_enabled = false,
+      },
+      sections = {
+         lualine_a = {
+            {"mode", fmt=function(s) return s:sub(1,1) end}
+         },
+         lualine_b = {
+            {"diagnostics", fmt=function(s) return s:gsub(":","") end }
+         },
+         lualine_x = {
+            {[[("%s'%s'%s"):format(vim.bo.filetype,vim.bo.fileencoding,vim.bo.fileformat)]]}
          }
       }
    }
