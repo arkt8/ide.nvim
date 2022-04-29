@@ -3,10 +3,16 @@ return require( "packer" ).startup( function( use )
 
   -- Language Tools --------------------------------------------------
   use "neovim/nvim-lspconfig"         -- | Default config for NeoVim lsp
-  use "hrsh7th/nvim-cmp"              -- | Autocompletion plugin
+
   use "hrsh7th/cmp-nvim-lsp"          -- | LSP source for nvim-cmp
-  use "saadparwaiz1/cmp_luasnip"      -- | Snippets source for nvim-cmp
+  use "hrsh7th/cmp-buffer"            -- | In buffer completion
+  use "hrsh7th/cmp-path"              -- | Path comp
+  use "hrsh7th/cmp-cmdline"           -- | Command line comp
+  use "hrsh7th/nvim-cmp"              -- | Autocompletion plugin
+
   use "L3MON4D3/LuaSnip"              -- | Snippets plugin
+  use "saadparwaiz1/cmp_luasnip"      -- | Snippets source for nvim-cmp
+
   use "zah/nim.vim"                   -- | Syntax highlight for Nim
 
   -- Interface & Colorschemes ----------------------------------------
