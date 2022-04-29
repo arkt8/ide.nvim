@@ -122,9 +122,9 @@ cmp.setup({
       ['<C-k>']     = fn.prevItem,
 
       -- Suggestion Documentation Navigation
-      ['<S-Up>']    = cmp.mapping.scroll_docs(-4),
+      ['<S-Up>']    = cmp.mapping.scroll_docs(-1),
       ['<C-Up>']    = cmp.mapping.scroll_docs(-4),
-      ['<S-Down>']  = cmp.mapping.scroll_docs(4),
+      ['<S-Down>']  = cmp.mapping.scroll_docs(1),
       ['<C-Down>']  = cmp.mapping.scroll_docs(4),
 
       -- Cancel completion

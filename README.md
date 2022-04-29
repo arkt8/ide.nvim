@@ -2,6 +2,9 @@
 
 Started as a minimal usable conf... but become my fully standard one!
 
+Compatible with Neovim 0.8
+
+
 ## Features
 
 * Fully Lua configurated (even ftplugins)
@@ -105,20 +108,19 @@ Thinking on these I set some keymaps to work only with suggestion.
 If you want to change it, they are on `lua/lsp-config.lua` file.
 
 Autocomplete Menu Navigation
-* `Shift ↓` or `Ctrl j` Select next menu item
-* `Shift ↑` or `Ctrl k` Select previous menu item
+* `↓` or `Ctrl j` Select next menu item
+* `↑` or `Ctrl k` Select previous menu item
 
 Autocomplete selection
-* `Shift →` or `Insert` Complete with suggested text
-* `Enter` Complete only if you select something from menu,
-   otherwise act in the standard behavior
-
-Close autocomplete menu
-* `Shift ←` or `Ctrl E` Close suggestion menu
+* `Enter` or `Tab` or `Insert` Complete with suggested text
 
 Navigation on menu item documentation
-* `Shift PageUp` or `Ctrl ↑` Show upper text
-* `Shift PageDown` or `Ctrl ↓` Show lower text
+* `Shift ↑` or `Ctrl ↑` Show upper text
+* `Shift ↓` or `Ctrl ↓` Show lower text
+
+Close autocomplete menu
+* `←` or `Ctrl e` Close suggestion menu
+
 
 
 ### LSP
