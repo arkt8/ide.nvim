@@ -12,6 +12,7 @@ Compatible with Neovim 0.8
   colorschemes install, no disruptive experience
 * Consistent semaphoric colors for errors, diff's and git status on LuaLine
 * Less system resources on LSP: Uses NeoVim's own LSP system, no need on Coc/Node
+* Terra Lang syntax colors on Neovim (based upon BetterLua plugin)
 * Out of the box enabled Nim (nimlsp) and Lua (sumneko_lua) language-servers
 * Out of the box enabled autocomplete and snippets
 * Wal colorscheme support as default
