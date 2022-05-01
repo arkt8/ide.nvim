@@ -1,15 +1,17 @@
--- Dit it in a hurry...
+-- Dit it in a hurry:
 -- BetterLua with extended support to Terra lang
 
 
 local M = {}
 
-function M.syntax() vim.cmd[===[
+function M.syntax()
+
+vim.cmd([===[
 
 
-if exists("b:current_syntax")
-	finish
-endif
+"if exists("b:current_syntax")
+"	finish
+"endif
 
 let s:cpo_save = &cpo
 set cpo&vim
@@ -593,9 +595,8 @@ hi! def link terraStruct              Structure
 let &cpo = s:cpo_save
 unlet s:cpo_save
 
-" vi: foldmethod=marker foldmarker={{{,}}} foldenable :
 
-]===] end
+]===]) end
 
 
 return M

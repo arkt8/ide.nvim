@@ -30,23 +30,24 @@ function ft.ftplugin()
 
    opt.autoindent = true
    opt.smartindent = true
+   if filename:match(".*%.nim$") then
+      _G.nim_lsprestart = nim_lsprestart
+      map(0, "n", "\\x", "<cmd>!nim r --spellSuggest --showAllMismatches %<Enter>", bindopt)
+      map(0, "n", "\\c", "<cmd>!nim compile --spellSuggest --showAllMismatches %<Enter>", bindopt)
+      map(0, "n", "\\r", "<cmd>lua _G.nim_lsprestart()<Enter>", bindopt)
+      -- Graceful restart, if nimlsp hangs out
+      vim.api.nvim_create_autocmd(
+         {"BufWritePost", "BufWinEnter"},
+         { pattern = {"*.nim$"}, callback = nim_lsprestart }
+      )
 
-   _G.nim_lsprestart = nim_lsprestart
-   map(0, "n", "\\x", "<cmd>!nim r --spellSuggest --showAllMismatches %<Enter>", bindopt)
-   map(0, "n", "\\c", "<cmd>!nim compile --spellSuggest --showAllMismatches %<Enter>", bindopt)
-   map(0, "n", "\\r", "<cmd>lua _G.nim_lsprestart()<Enter>", bindopt)
-   -- Graceful restart, if nimlsp hangs out
-   vim.api.nvim_create_autocmd(
-      {"BufWritePost", "BufWinEnter"},
-      { pattern = {"*.nim"}, callback = nim_lsprestart }
-   )
-
-   -- Using Neovim's Language Server Api with nimlsp
-   require("lsp-config").setup("nimls",{
-      cmd                 = {"nimlsp"},
-      filetypes           = {"nim"},
-      single_file_support = true
-   })
+      -- Using Neovim's Language Server Api with nimlsp
+      require("lsp-config").setup("nimls",{
+         cmd                 = {"nimlsp"},
+         filetypes           = {"nim"},
+         single_file_support = true
+      })
+   end
 end
 
 --

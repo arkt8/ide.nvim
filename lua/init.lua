@@ -14,7 +14,8 @@ local function loadftmodule(ft,action)
 end
 
 -- :To create ftplugin files in Lua format put your files into:
--- ~/.config/nvim/lua/ftplugin/FILETYPE/init.lua
+-- ~/.config/nvim/lua/ftplugin/FILETYPE/init.lua  //OR//
+-- ~/.config/nvim/lua/ftplugin/FILETYPE.lua
 vim.api.nvim_create_autocmd({"FileType"}, {
    pattern = {"*"},
    callback = function() loadftmodule(vim.bo.filetype,"ftplugin") end
