@@ -99,7 +99,7 @@ cmp.setup({
    end},
    completion = {
       keyword_length = 2,
-      -- keyword_pattern = " %w+",
+      -- keyword_pattern = "%w+",
       -- autocomplete = cmp.TriggerEvent.InsertEnter,
       autocomplete = {
          cmp.TriggerEvent.TextChanged,
@@ -114,8 +114,10 @@ cmp.setup({
    mapping = cmp.mapping.preset.insert({
       -- Confirm Completion
       ['<Insert>']  = fn.complete,
-      ['<Tab>']     = fn.complete,
-      ['<CR>']      = fn.complete,
+      ['<S-Right>'] = fn.complete,
+      ['<S-Tab>']   = fn.complete,
+      -- Enter and Tab are problematic... horrible UX
+      --['<CR>']      = fn.complete,
 
       -- Suggestion Menu Navigation
       ['<C-j>']     = fn.nextItem,
