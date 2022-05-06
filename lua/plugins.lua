@@ -14,6 +14,7 @@ return require( "packer" ).startup( function( use )
   use "saadparwaiz1/cmp_luasnip"      -- | Snippets source for nvim-cmp
 
   use "zah/nim.vim"                   -- | Syntax highlight for Nim
+  use "jakwings/vim-terra"            -- | Support for terralang
 
   -- Interface & Colorschemes ----------------------------------------
   use "nvim-lualine/lualine.nvim"     -- | Status line
