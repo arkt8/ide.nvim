@@ -5,6 +5,7 @@ local opt = {noremap=true,silent=true}
 map("n", "\\f",      "<cmd>Telescope find_files<CR>", opt)
 map("n", "\\g",      "<cmd>Telescope live_grep<CR>",  opt)
 map("n", "\\m",      "<cmd>Telescope marks<CR>",      opt)
+map("n", "\\b",      "<cmd>Telescope buffers<CR>",    opt)
 map("n", "\\<Space>","<cmd>Telescope buffers<CR>",    opt)
 
 -- Manage tabs

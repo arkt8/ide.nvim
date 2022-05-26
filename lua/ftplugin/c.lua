@@ -8,12 +8,9 @@ function ft.ftplugin()
   vim.bo.tabstop = 2
 
   -- LSP Configuration
-  -- Requires Lua Language Server]
-  -- (https://github.com/sumneko/lua-language-server)
-  local runtime_path = vim.split(package.path, ';')
-  table.insert(runtime_path, "lua/?.lua")
-  table.insert(runtime_path, "lua/?/init.lua")
-  require("lsp-config").setup("sumneko_lua", {
+  -- Requires Clangd installed
+  require("lsp-config").setup("clangd", {
+    --[[
     settings = {
       rootPatterns = {".git/"},
       Lua = {
@@ -43,7 +40,7 @@ function ft.ftplugin()
           enable = false
         }
       }
-    }
+    }--]]
   })
 end
 

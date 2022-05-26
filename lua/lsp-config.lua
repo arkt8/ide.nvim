@@ -55,11 +55,35 @@ vim.diagnostic.config({
 --
 -- nvim-cmp setup
 --
+
+-- Recipes for buffers completion
+
+local cmp_buffer_all_sized = function()
+  local maxsize = 1024 * 512 -- 512 kb
+  local bufs = {}
+  for _, win in pairs(vim.api.nvim_list_wins()) do
+    local buf = vim.api.nvim_win_get_buf(win)
+    if vim.api.nvim_buf_get_offset(buf, vim.api.nvim_buf_line_count(buf)) < maxsize then
+      bufs[#bufs+1] = buf
+    end
+  end
+  return bufs
+end
+--local cmp_buffer_all = function() return vim.api.nvim_list_bufs() end
+--local cmp_buffer_visible = function()
+--  local bufs = {}
+--  for _, win in ipairs(vim.api.nvim_list_wins()) do
+--    bufs[vim.api.nvim_win_get_buf(win)] = true
+--  end
+--  return vim.tbl_keys(bufs)
+--end
+
+
 local cmp = require 'cmp'
 
 local fn = {
    complete = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
+      behavior = cmp.ConfirmBehavior.Insert,
       select = true -- As shown on ghost_text
    },
    nextItem = function(fallback)
@@ -98,8 +122,8 @@ cmp.setup({
          require('luasnip').lsp_expand(args.body)
    end},
    completion = {
-      keyword_length = 2,
-      -- keyword_pattern = "%w+",
+      -- keyword_length = 2,
+      keyword_pattern = [[\k\+]],
       -- autocomplete = cmp.TriggerEvent.InsertEnter,
       autocomplete = {
          cmp.TriggerEvent.TextChanged,
@@ -134,22 +158,15 @@ cmp.setup({
       -- ['<Right>']   = fn.closeAndThrough,
       ['<Left>']    = fn.closeAndThrough,
    }),
-   sources = {
-      { name = 'luasnip' , priority = 1 }, -- L3MON4D3/LuaSnip
-      { name = 'nvim_lsp', priority = 2 }, -- hrsh7th/cmp-nvim-lsp
-      { name = 'path'    , priority = 3 }, -- hrsh7th/cmp-path
-      { name = 'buffer'  , priority = 4 }, -- hrsh7th/cmp-buffer
-      { name = 'cmdline' , priority = 5 }, -- hrsh7th/cmp-cmdline
-   },
-   -- cmp-nvim says to use this way, but works as above as well
-   -- one call less
-   -- sources = cmp.config.sources({
-   --    { name = 'nvim_lsp' }, -- hrsh7th/cmp-nvim-lsp
-   --    { name = 'luasnip' },  -- L3MON4D3/LuaSnip
-   --    { name = 'buffer' },   -- hrsh7th/cmp-buffer
-   --    { name = 'path' },     -- hrsh7th/cmp-path
-   --    { name = 'cmdline'},   -- hrsh7th/cmp-cmdline
-   -- }),
+   sources = cmp.config.sources({
+      { name = 'nvim_lsp' }, -- hrsh7th/cmp-nvim-lsp
+      { name = 'luasnip' },  -- L3MON4D3/LuaSnip
+      { name = 'path' },     -- hrsh7th/cmp-path
+      { name = 'cmdline'},   -- hrsh7th/cmp-cmdline
+      { name = 'buffer',     -- hrsh7th/cmp-buffer
+        option = { get_bufnrs = cmp_buffer_all_sized }
+      },
+   }),
    --preselect = "none",
    view = {
       entries = {
