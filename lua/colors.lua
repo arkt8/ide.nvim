@@ -229,8 +229,9 @@ function colors.update()
    setDiffColor()
 
    -- UI Elements
+   local bghilight = mix(ui.bg, ui.fg, 0.1)
    hiLink("LineNr",{"SignColumn"})
-   hi("PMenu",      mix( ui.bg, ui.fg, 0.1),  ui.fg,  "None")
+   hi("PMenu",      bghilight,                ui.fg,  "None")
    hi("PmenuSel",   mix( ui.bg, ui.fg, 0.4),  ui.fg,  "bold")
    hi("PmenuSbar",  mix( ui.bg, ui.fg, 0.15), ui.fg,  "bold")
    hi("PmenuThumb", mix( ui.bg, ui.fg, 0.5),  ui.fg,  "bold")
@@ -239,6 +240,9 @@ function colors.update()
    hi("FoldColumn", "None", ui.fg,  "None")
    hi("VertSplit",  "None", mix( ui.bg, ui.fg, 0.5),  "bold")
    hi("NonText",    "None", ui.bg,  "None")
+
+   hi("CursorLine",   bghilight, "None","None")
+   hi("CursorLineNr", bghilight, ui.fg, "None")
 
    -- Avoid brain draining visuals on errors shown when using
    -- low-contrast or low-saturation colorschemes

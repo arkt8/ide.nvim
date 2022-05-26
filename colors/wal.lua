@@ -35,10 +35,12 @@ do
    wal.dim0 = sum( wal.bg, "#040404")
    wal.dim1 = sum( wal.bg, "#080808")
    wal.dim2 = sum( wal.bg, "#1f1f1f")
+   wal.bgsel = mix( wal.bg, wal.fg, 0.03)
    -- Semaphoric
 end
 
-hi( "Normal",       wal.bg,     wal.fg,      "None" )
+hi( "NormalNC",     wal.bg,     wal.fg,      "None" )
+hi( "Normal",       wal.bgsel,  wal.fg,      "None" )
 hi( "Comment",      "None",     wal.comment, "italic" )
 hi( "NonText",      wal.color0, wal.color8,  "None" )
 hi( "Whitespace",   "None",     wal.color8,  "None" )
