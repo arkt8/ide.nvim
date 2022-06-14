@@ -48,7 +48,9 @@ function ft.ftplugin()
 end
 
 function ft.syntax()
-
+  vim.cmd[[syntax match luaDelimiter "[:{}()]" ]]
+  vim.cmd[[hi! link luaFunction Functions]]
+  vim.cmd[[hi! link luaDelimiter Delimiter]]
 end
 
 return ft

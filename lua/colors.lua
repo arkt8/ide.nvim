@@ -84,6 +84,7 @@ local function setHintColor(dark,light)
 
    colors.hi( "SignHint",dark,light,"bold")
    colors.hiLink("SignHint", {"ALEHintSign", "CocHintSign", "DiagnosticSignHint",})
+   colors.hi( "DiagnosticUnderlineHint", "None", "None", "None")
 
    colors.hi( "DiagnosticFloatingHint","None",light,"None")
 
@@ -95,6 +96,7 @@ local function setInfoColor(dark,light)
 
    colors.hi( "SignInfo",dark,dark,"italic")
    colors.hiLink("SignInfo", {"ALEInfoSign","CocInfoSign","DiagnosticSignInfo",})
+   colors.hi( "DiagnosticUnderlineInfo", "None", "None", "None")
 
    colors.hi( "DiagnosticFloatingInfo", "None", light, "None")
 end
@@ -246,7 +248,7 @@ function colors.update()
 
    -- Avoid brain draining visuals on errors shown when using
    -- low-contrast or low-saturation colorschemes
-   italicizeReservedKeywords()
+   --italicizeReservedKeywords()
 end
 vim.api.nvim_create_autocmd({"VimEnter","ColorScheme","FileType","BufReadPost" },{
    pattern = {"*"},

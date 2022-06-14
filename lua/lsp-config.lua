@@ -22,7 +22,6 @@ local on_attach = function(client, bufnr)
    -- Enable completion triggered by <c-x><c-o>
    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-
    -- Mappings.
    -- See `:help vim.lsp.*` for documentation on any of the below functions
    bufkey( bufnr, 'n', 'gD',        '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
@@ -32,13 +31,12 @@ local on_attach = function(client, bufnr)
    bufkey( bufnr, 'n', 'K',         '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
    bufkey( bufnr, 'n', 'gi',        '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
    bufkey( bufnr, 'n', '<C-k>',     '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-   bufkey( bufnr, 'n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-   bufkey( bufnr, 'n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-   bufkey( bufnr, 'n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-   bufkey( bufnr, 'n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-   bufkey( bufnr, 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-   bufkey( bufnr, 'nv', '\\F',      '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-   bufkey( bufnr, 'nv', '\\a',      '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+   bufkey( bufnr, 'n', '\\wf',      '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+   bufkey( bufnr, 'n', '\\wr',      '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+   bufkey( bufnr, 'n', '\\wl',      '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+   bufkey( bufnr, 'n', '\\rn',      '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+   bufkey( bufnr, 'v', '\\cf',      '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+   bufkey( bufnr, 'n', '\\a',       '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
 end
 
 -- luasnip setup
@@ -188,10 +186,10 @@ function M.setup(server, config)
    if vim.o.diff == true then return end
 
    vim.opt_local.signcolumn="yes"
-   if singleSet[server] == true then return end
+   --if singleSet[server] == true then return end
    local lsp = require("lspconfig")
 
-   config.on_onattach = on_attach
+   config.on_attach = on_attach
    config.capabilities = capabilities
    config.provideFormatter = true
    config.flags = { debounce_text_changes = 150 }

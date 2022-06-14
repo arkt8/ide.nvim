@@ -51,19 +51,11 @@ function ft.ftplugin()
 end
 
 --
--- Syntax tweaks, to make more consistent thru langs
+-- syntax tweaks, to make more consistent thru langs
 --
 function ft.syntax()
    vim.cmd[[set syntax=nim]]
-   vim.cmd[[syntax match nimDelimiter "[\[\]\(\)\{\},]"]]
-   vim.cmd[[hi! link nimDelimiter Delimiter]]
-
-   vim.cmd[[syntax match nimOperator "[=+*/<>@$~&%|!?^.:\\-]" ]]
-   vim.cmd[[hi! link nimOperator Operator]]
-
-   vim.cmd[[hi! link nimStatement Statement]]
-   vim.cmd[[hi! link nimFunction Identifier]]
-   vim.cmd[[hi! link nimBuiltin  Type]]
+   vim.cmd[[syntax match nimoperator "[=+*/<>@$~&%|!?^.:\\-]" ]]
 end
 
 -- nimlsp doesn't works without a filesystem file. So when opening

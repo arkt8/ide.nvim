@@ -44,8 +44,16 @@ function ft.ftplugin()
   })
 end
 
+--
+-- syntax tweaks
+--
 function ft.syntax()
+  vim.cmd[[set syntax=c]]
+  vim.cmd[[syntax match cDelimiter "[\[\]\(\)\{\},]"]]
+  vim.cmd[[hi! link cDelimiter delimiter]]
 
+  vim.cmd[[hi! link cPreCondit PreProc]]
+  vim.cmd[[hi! link cPreConditMatch PreProc]]
 end
 
 return ft
