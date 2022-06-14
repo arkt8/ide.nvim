@@ -13,7 +13,7 @@ return require( "packer" ).startup( function( use )
   use "L3MON4D3/LuaSnip"              -- | Snippets plugin
   use "saadparwaiz1/cmp_luasnip"      -- | Snippets source for nvim-cmp
 
-  use "arkt8/nim.vim"                   -- | Syntax highlight for Nim
+  use "arkt8/nim.vim"                 -- | Syntax highlight for Nim
   use "jakwings/vim-terra"            -- | Support for terralang
 
   -- Interface & Colorschemes ----------------------------------------
@@ -22,10 +22,13 @@ return require( "packer" ).startup( function( use )
   use "whatyouhide/vim-gotham"
   use "dracula/vim"
   use "jacoborus/tender"
-  use "arcticicestudio/nord-vim"
   use "nanotech/jellybeans.vim"
   use "drewtempelmeyer/palenight.vim"
   use "catppuccin/nvim"
+  use "kwsp/halcyon-neovim"
+  use "lucastrvsn/kikwis"
+  use "Shatur/neovim-ayu"
+
 
   -- Tools -----------------------------------------------------------
   use "nvim-telescope/telescope.nvim" -- | Fuzzy finder
