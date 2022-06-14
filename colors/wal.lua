@@ -4,15 +4,16 @@
 --
 -- Depends on:
 -- * thadeudepaula/ide.nvim  lua/colors.lua module
+--
 -- * github.com/dylanraps/pywal
 -- * lua json module
 -----------------------------------------------------------------
+vim.cmd[[ hi clear ]]
 vim.o.background = "dark"
 vim.o.termguicolors = true
 vim.g.colors_name = "wal"
-vim.cmd[[ hi clear ]]
 
-if vim.fn.exists[[ syntax on ]] then vim.cmd[[ syntax reset ]] end
+---if vim.fn.exists[[ syntax on ]] then vim.cmd[[ syntax reset ]] end
 
 ------ Dependencies ------
 local json   = require "json"
@@ -20,6 +21,8 @@ local colors = require "colors"
 
 ------ Shortcuts ---------
 local sum, mix, hi = colors.sum, colors.mix, colors.hi
+local ITALIC = "None"
+local BOLD = "None"
 
 local wal = {}
 do
@@ -35,18 +38,19 @@ do
    wal.dim0 = sum( wal.bg, "#040404")
    wal.dim1 = sum( wal.bg, "#080808")
    wal.dim2 = sum( wal.bg, "#1f1f1f")
+   wal.dim3 = mix( wal.bg, wal.comment, 0.7)
    wal.bgsel = mix( wal.bg, wal.fg, 0.03)
    -- Semaphoric
 end
 
 hi( "NormalNC",     wal.bg,     wal.fg,      "None" )
 hi( "Normal",       wal.bgsel,  wal.fg,      "None" )
-hi( "Comment",      "None",     wal.comment, "italic" )
+hi( "Comment",      "None",     wal.comment, ITALIC )
 hi( "NonText",      wal.color0, wal.color8,  "None" )
 hi( "Whitespace",   "None",     wal.color8,  "None" )
 hi( "EndOfBuffer",  "None",     wal.color0,  "None" )
 hi( "VertSplit",    "None",     wal.dim2,    "None" )
-hi( "LineNr",       "None",     wal.dim2,    "None" )
+hi( "LineNr",       "None",     wal.dim3,    "None" )
 hi( "CursorLineNr", "None",     wal.color0,  "None" )
 hi( "StatusLineNC", "None",     wal.dim1,    "None" )
 hi( "StatusLine",   "None",     wal.dim2,    "None" )
@@ -56,7 +60,7 @@ hi( "Conceal",      "None",     wal.color0,  "None" )
 hi( "Directory",    "None",     wal.color11, "None" )
 
 hi("WarningMsg",   "None", wal.color3, "None" )
-hi("Folded",       "None", wal.color6, "italic" )
+hi("Folded",       "None", wal.color6, ITALIC )
 hi("SignColumn",   "None", wal.color3, "None" )
 hi("MoreMsg",      "None", wal.color7, "None" )
 
@@ -77,8 +81,8 @@ hi("VisualNOS",    "None", wal.color13, "reverse" )
 -- hi("StatusLine", "None",    wal.color7, "" )
 -- hi("StatusLineNC", "None",  wal.color7, "" )
 -- hi("FoldColumn",   "None", wal.color6, "None" )
--- hi("Error",mix(colors.bg,guicolors.error,0.2),mix(guicolors.error,colors.fg,0.2),"italic")
--- hi("ErrorInline",guicolors.error,mix(guicolors.error,colors.fg,0.7),"italic")
+-- hi("Error",mix(colors.bg,guicolors.error,0.2),mix(guicolors.error,colors.fg,0.2),ITALIC)
+-- hi("ErrorInline",guicolors.error,mix(guicolors.error,colors.fg,0.7),ITALIC)
 -- hi("TermCursor", "None", wal.color7, "" )
 -- hi("TermCursorNC", "None", wal.color7, "" )
 -- hi("ModeMsg", "None", wal.color7, "" )
@@ -90,7 +94,7 @@ hi( "Question",     "None", wal.color7, "None" )
 hi( "Search",       "None", wal.color3, "reverse" )
 hi( "IncSearch",    "None", wal.color3, "reverse" )
 hi( "Substitute",   "None", wal.color4, "reverse" )
-hi( "MatchParen",   "None", wal.color3, "bold,italic" )
+hi( "MatchParen",   "None", wal.color3, BOLD )
 -- hi("QuickFixLine", "None", wal.color7, "" )
 -- hi("SpellBad", "None", wal.color7, "" )
 -- hi("SpellCap", "None", wal.color7, "" )
@@ -99,8 +103,8 @@ hi( "MatchParen",   "None", wal.color3, "bold,italic" )
 hi("TabLineSel",  wal.color2, wal.color0, "None" )
 hi("TabLine",     wal.color8, wal.color7, "None" )
 hi("TabLineFill", wal.color0, wal.color7, "None" )
-hi("Title",       "None", "wal.color12", "bold" )
-hi("Todo",  "None", wal.color15, "bold" )
+hi("Title",       "None", "wal.color12", BOLD )
+hi("Todo",  "None", wal.color15, BOLD )
 hi("WildMenu",    "None", wal.color7, "None" )
 
 --
@@ -114,46 +118,46 @@ hi("String",      "None",  wal.color10, "None" )
 hi("Character",   "None",  wal.color10, "None" )
 hi("Number",      "None",  wal.color10, "None" )
 hi("Float",       "None",  wal.color10, "None" )
-hi("Boolean",     "None",  wal.color10, "bold" )
+hi("Boolean",     "None",  wal.color10, BOLD )
 
-hi("Functions",   "None", wal.color9, "Italic" ) -- Language native
+hi("Functions",   "None", wal.color9, ITALIC ) -- Language native
 hi("Function",    "None", wal.color15, "None" ) -- Declaration
-hi("Identifier",  "None", wal.color15, "None" )
+hi("Identifier",  "None", wal.color7, "None" )
 hi("FunctionCall","None", wal.color15, "None" ) -- On call only
 
-hi("Delimiter",   "None", wal.color3, "None" )
+hi("Delimiter",   "None", wal.color13, "None" )
 
-hi("Repeat",         "None", wal.color1, "italic" )
-hi("RepeatOperator", "None", wal.color1, "italic")
-hi("Statement",      "None", wal.color1, "italic" )
+hi("Repeat",         "None", wal.color1, ITALIC )
+hi("RepeatOperator", "None", wal.color1, ITALIC)
+hi("Statement",      "None", wal.color1, ITALIC )
 
-hi("Conditional", "None", wal.color1, "Italic" )
-hi("Operator",    "None", wal.color1, "Bold,Italic" )
+hi("Conditional", "None", wal.color1, ITALIC )
+hi("Operator",    "None", wal.color1, BOLD )
 
 hi("Label",       "None", wal.color9, "None" )
-hi("Keyword",     "None", wal.color9, "italic,bold" )
+hi("Keyword",     "None", wal.color9, BOLD )
 hi("Exception",   "None", wal.color7 )
 
-hi("PreProc",     "None", wal.color9, "italic" )
-hi("Include",     "None", wal.color9, "italic" )
-hi("Define",      "None", wal.color9, "italic" )
-hi("Macro",       "None", wal.color9, "italic" )
-hi("PreCondit",   "None", wal.color9, "italic" )
+hi("PreProc",     "None", wal.color11, ITALIC )
+hi("Include",     "None", wal.color9, ITALIC )
+hi("Define",      "None", wal.color9, ITALIC )
+hi("Macro",       "None", wal.color9, ITALIC )
+hi("PreCondit",   "None", wal.color9, ITALIC )
 
-hi("Type",        "None", wal.color13, "bold" )
+hi("Type",        "None", wal.color13, BOLD )
 hi("StorageClass","None", wal.color13, "None" )
-hi("Structure",   "None", wal.color13, "italic" )
-hi("Typedef",     "None", wal.color13, "bold" )
+hi("Structure",   "None", wal.color13, ITALIC )
+hi("Typedef",     "None", wal.color13, BOLD )
 
-hi("Special",        "None", wal.color9, "italic" )
+hi("Special",        "None", wal.color9, ITALIC )
 hi("SpecialChar",    "None", wal.color7 )
 hi("Tag",            "None", wal.color7 )
-hi("SpecialComment", "None", wal.color8, "bold,italic" )
-hi("Debug",          "None", wal.color3, "italic" )
+hi("SpecialComment", "None", wal.color8, BOLD )
+hi("Debug",          "None", wal.color3, ITALIC )
 
 hi("htmlStrike"     , "None", wal.color4, "strikethrough")
-hi("htmlItalic"     , "None", wal.color12, "italic")
-hi("htmlBold"       , "None", wal.color13, "bold")
-hi("htmlBoldItalic" , "None", wal.color14, "bold,italic")
+hi("htmlItalic"     , "None", wal.color12, ITALIC)
+hi("htmlBold"       , "None", wal.color13, BOLD)
+hi("htmlBoldItalic" , "None", wal.color14, "italic")
 
 collectgarbage()
